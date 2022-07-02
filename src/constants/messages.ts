@@ -1,3 +1,3 @@
 export default {
-    hello: 'Xin chao moi nguoi',
+    hello: 'Xin chao',
 }
