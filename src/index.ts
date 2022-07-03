@@ -8,6 +8,8 @@ if (process.env.NODE_ENV === "production") {
 
 import { Client, Intents } from "discord.js";
 import { bootstrap } from "./commands";
+import express, { Request, Response } from "express";
+import herokuAwake from 'heroku-awake';
 
 const client = new Client({
   intents: [
@@ -26,3 +28,16 @@ client.login(process.env.TOKEN).then(async () => {
   await SoundCloud.connect();
   bootstrap(client);
 });
+
+const app = express();
+
+app.get('/', (_req: Request, res: Response) => {
+  return res.send({
+    message: 'Bot is up and running',
+  });
+});
+
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`> Bot is on listening`);
+  herokuAwake(process.env.APP_URL || 'http://localhost:3000');
+})
