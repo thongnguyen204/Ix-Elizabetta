@@ -5,8 +5,6 @@ export const deploy = (client: Client): void => {
     client.on('messageCreate', async (message) => {
         if (!message.guild) return;
         if (!client.application?.owner) await client.application?.fetch();
-        console.log(message.content);
-        
         if (
             message.content.toLowerCase() === '!deploy' && 
             message.author.id === client.application?.owner?.id

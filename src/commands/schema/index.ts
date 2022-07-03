@@ -4,11 +4,15 @@ export const schema: ApplicationCommandData[] = [
     {
         name: 'test',
         description: 'This is a test command',
+    },
+    {
+        name: 'play',
+        description: 'Play a song or playlist on Du-tup',
         options: [
             {
-                name: 'thong',
+                name: 'song',
                 type: Constants.ApplicationCommandOptionTypes.STRING,
-                description: 'Thong Nguyen test command',
+                description: 'The url or keyword to search videos or playlist on Youtube',
                 required: true,
             },
         ],
