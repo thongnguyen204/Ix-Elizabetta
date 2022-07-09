@@ -3,6 +3,13 @@ import { deploy } from "./collections/deploy";
 import messages from "@/constants/messages";
 import { play } from "./collections/play";
 import { test } from "./collections/test";
+import { leave } from "./collections/leave";
+import { pause } from "./collections/pause";
+import { queue } from "./collections/queue";
+import { resume } from "./collections/resume";
+import { skip } from "./collections/skip";
+import { soundcloud } from "./collections/soundcloud";
+import { nowPlaying } from "./collections/nowPlaying";
 
 export const bootstrap = (client: Client): void => {
     deploy(client);
@@ -12,6 +19,30 @@ export const bootstrap = (client: Client): void => {
             switch (interaction.commandName) {
                 case play.name:
                     play.execute(interaction);
+                    break;
+                case pause.name:
+                    pause.execute(interaction);
+                    break;
+                case resume.name:
+                    resume.execute(interaction);
+                    break;
+                case skip.name:
+                    skip.execute(interaction);
+                    break;
+                case leave.name:
+                    leave.execute(interaction);
+                    break;
+                case soundcloud.name:
+                    soundcloud.execute(interaction);
+                    break;
+                case resume.name:
+                    resume.execute(interaction);
+                    break;
+                case queue.name:
+                    queue.execute(interaction);
+                    break;
+                case nowPlaying.name:
+                    nowPlaying.execute(interaction);
                     break;
                 case test.name:
                     test.execute(interaction);

@@ -24,7 +24,14 @@ client.on("ready", () => {
   console.log(`> Bot is on ready`);
 });
 
-client.login(process.env.TOKEN).then(async () => {
+const env = process.env.ENV;
+let token = process.env.TOKEN;
+
+if (env === 'LOCAL') {
+  token = process.env.LOCAL;
+}
+
+client.login(token).then(async () => {
   await SoundCloud.connect();
   bootstrap(client);
 });
@@ -39,5 +46,5 @@ app.get('/', (_req: Request, res: Response) => {
 
 app.listen(process.env.PORT || 3000, () => {
   console.log(`> Bot is on listening`);
-  herokuAwake(process.env.APP_URL || 'http://localhost:3000');
+  // herokuAwake(process.env.APP_URL || 'http://localhost:3000');
 })

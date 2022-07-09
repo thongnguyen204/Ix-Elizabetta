@@ -106,7 +106,7 @@ export class Server {
         this.audioPlayer.stop();
     }
 
-    //bot leave channel nad remove current server
+    //bot leave channel and remove current server
     public leave(): void {
         if (this.voiceConnection.state.status !== VoiceConnectionStatus.Destroyed) {
             this.voiceConnection.destroy();
