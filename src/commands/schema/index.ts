@@ -49,4 +49,8 @@ export const schema: ApplicationCommandData[] = [
         name: 'nowplaying',
         description: 'Check current song',
     },
+    {
+        name: 'queue',
+        description: 'Check current queue',
+    },
 ];
