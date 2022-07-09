@@ -3,6 +3,6 @@ export const test = {
     name: 'test',
     execute: async (interaction: CommandInteraction): Promise<void> => {
         await interaction.deferReply();
-        await interaction.followUp('Djt con me may'); 
+        await interaction.followUp('Test success'); 
     }
 }

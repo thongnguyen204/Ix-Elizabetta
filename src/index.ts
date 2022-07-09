@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === "production") {
 import { Client, Intents } from "discord.js";
 import { bootstrap } from "./commands";
 import express, { Request, Response } from "express";
-import herokuAwake from 'heroku-awake';
+// import herokuAwake from 'heroku-awake';
 
 const client = new Client({
   intents: [
