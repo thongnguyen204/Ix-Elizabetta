@@ -47,4 +47,8 @@ app.get('/', (_req: Request, res: Response) => {
 app.listen(process.env.PORT || 3000, () => {
   console.log(`> Bot is on listening`);
   // herokuAwake(process.env.APP_URL || 'http://localhost:3000');
+  var http = require("http");
+  setInterval(function() {
+      http.get(process.env.APP_URL || 'http://localhost:3000');
+  }, 300000 * 2); // every 5 minutes (300000)
 })
