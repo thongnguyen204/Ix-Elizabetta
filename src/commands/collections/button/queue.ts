@@ -1,13 +1,13 @@
 import messages from '@/constants/messages';
 import { servers } from '@/servers';
-import { AudioPlayerStatus } from '@discordjs/voice';
-import { CommandInteraction, MessageActionRow, MessageButton, TextChannel } from 'discord.js';
-import { createQueueMessages } from '../messages/queueMessage';
+import { ButtonInteraction, CommandInteraction, MessageActionRow, MessageButton, TextChannel } from 'discord.js';
+import { createQueueMessages } from '@/commands/messages/queueMessage';
+import { AudioPlayerStatus } from "@discordjs/voice";
 
-export const queue = {
+export const queueButton = {
   name: 'queue',
-  execute: async (interaction: CommandInteraction): Promise<void> => {
-    await interaction.deferReply();
+  execute: async (interaction: ButtonInteraction): Promise<void> => {
+    // await interaction.deferReply();
     const server = servers.get(interaction.guildId as string);
     if (!server) {
       await interaction.followUp(messages.joinVoiceChannel);
@@ -19,7 +19,7 @@ export const queue = {
     }
 
     const embedMessages = createQueueMessages(server.queue);
-    await interaction.editReply(messages.yourQueue);
+    await interaction.channel?.send(messages.yourQueue);
 
     if (
       interaction &&
@@ -45,7 +45,7 @@ export const queue = {
   },
 };
 
-function getPauseResumeButton(interaction: CommandInteraction): MessageButton {
+function getPauseResumeButton(interaction: ButtonInteraction): MessageButton {
   const server = servers.get(interaction.guildId as string);
   if (server?.audioPlayer.state.status === AudioPlayerStatus.Paused) {
       return new MessageButton()

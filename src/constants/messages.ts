@@ -18,7 +18,7 @@ export default {
     resumed: '▶ Resumed!',
     alreadyPlaying: '▶ Already playing!',
     leaved: '👋 Bye bye',
-    nothing: '🤷‍♂️ Nothing',
+    nothing: '🤷‍♂️ Hàng chờ hiện tại đang trống',
     yourQueue: '🎶 Your queue',
     invalidPosition: '❌ Invalid position!',
     jumpedTo: '⏩ Jumped to',

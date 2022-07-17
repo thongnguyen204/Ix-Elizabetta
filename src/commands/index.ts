@@ -10,6 +10,10 @@ import { resume } from "./collections/resume";
 import { skip } from "./collections/skip";
 import { soundcloud } from "./collections/soundcloud";
 import { nowPlaying } from "./collections/nowPlaying";
+import { pauseButton } from "./collections/button/pause";
+import { skipButton } from "./collections/button/skip";
+import { queueButton } from "./collections/button/queue";
+import { resumeButton } from "./collections/button/resume";
 
 export const bootstrap = (client: Client): void => {
     deploy(client);
@@ -54,18 +58,42 @@ export const bootstrap = (client: Client): void => {
             interaction.reply(messages.error);
         }
     });
-    const prefix = 'js-';
+
+    const prefix = 'eli-';
     client.on('messageCreate', async (message) => {
         if (message.author.bot) return;
         if (!message.content.startsWith(prefix)) return;
         if (message.author.discriminator === '9717') {
-            message.reply('Xin chào');
+            const channel = message.channel;
+            channel.send('dạ chào mụi người em là người mới hi vọng sẽ hỗ trợ được mọi người trong thời gian sắp tới :3');
             return;
         }
         
         const commandBody = message.content.slice(prefix.length);
         const agrs = commandBody.split(' ');
         const command = agrs.shift()?.toLowerCase();
+    });
 
+    client.on('interactionCreate', async (interaction) => {
+        if (!interaction.isButton()) return;
+        try {
+            switch (interaction.customId) {
+                case pause.name:
+                    await pauseButton.execute(interaction);
+                    await queueButton.execute(interaction);
+                    break;
+                case resume.name:
+                    await resumeButton.execute(interaction);
+                    await queueButton.execute(interaction);
+                    break;
+                case skip.name:
+                    skipButton.execute(interaction);
+                    break;
+                default:
+                    break;
+            }
+        } catch (e) {
+            interaction.reply(messages.error);
+        }
     });
 };
